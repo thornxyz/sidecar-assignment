@@ -188,12 +188,31 @@ Content:
                     except json.JSONDecodeError:
                         history = []
 
-            history.append(result_data)
-            with open(history_file, "w") as f:
-                json.dump(history, f, indent=2)
+            is_duplicate = any(
+                entry.get("booking_id") == result_data["booking_id"]
+                and (
+                    entry.get("voyage_number") == result_data.get("voyage_number")
+                    or entry.get("arrival_date") == result_data.get("arrival_date")
+                )
+                for entry in history
+            )
+
+            if not is_duplicate:
+                history.append(result_data)
+                with open(history_file, "w") as f:
+                    json.dump(history, f, indent=2)
+                print(f"Results saved to {history_file}")
+            else:
+                print("Duplicate entry detected. Skipping save.")
 
             print("Extracted Info:")
             print(json.dumps(result_data, indent=2))
+
+            if result_data.get("voyage_number") is None:
+                print("WARNING: Voyage Number could not be found")
+            if result_data.get("arrival_date") is None:
+                print("WARNING: Arrival Date could not be found")
+
             print(f"Results saved to {history_file}")
         else:
             print("Failed to extract JSON data from the response")
