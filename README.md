@@ -32,7 +32,7 @@ This project implements an AI-powered solution to automate interactions with sea
    cd sidecar-assignment
    ```
 
-2. **Automatic Setup (Recommended)**:
+2. **Automatic Setup**:
 
    - On Windows (PowerShell):
 
