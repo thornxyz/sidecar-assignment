@@ -23,13 +23,105 @@ This project implements an AI-powered solution to automate interactions with sea
 - Adapts to website changes by falling back to AI detection when stored patterns fail
 - Updates stored patterns based on successful interactions, creating a self-improving system
 
+## Installation
+
+1. Clone the repository:
+
+   ```
+   git clone <repository-url>
+   cd sidecar-assignment/test1
+   ```
+
+2. **Automatic Setup (Recommended)**:
+
+   - On Windows (PowerShell):
+
+     ```
+     .\run.ps1
+     ```
+
+   - On Windows (Command Prompt):
+
+     ```
+     run.bat
+     ```
+
+   - On Linux/Mac:
+     ```
+     chmod +x run.sh
+     ./run.sh
+     ```
+
+3. **Manual Setup**:
+
+   Create a virtual environment:
+
+   ```
+   python -m venv venv
+   .\venv\Scripts\activate
+   ```
+
+   Install dependencies:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+   Create a `.env` file in the root directory with your Gemini API key:
+
+   ```
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
 ## How to Run
 
-```
-python main.py --booking_id YOUR_BOOKING_ID
-```
+1. **Using the Run Scripts** (Recommended):
 
-If no booking ID is provided, it will use the default "MSCU5285725".
+   - Run with default booking ID:
+
+     ```
+     # On Windows (PowerShell)
+     .\run.ps1
+
+     # On Windows (Command Prompt)
+     run.bat
+
+     # On Linux/Mac
+     ./run.sh
+     ```
+
+   - Run with custom booking ID:
+
+     ```
+     # On Windows (PowerShell)
+     .\run.ps1 --booking_id YOUR_BOOKING_ID
+
+     # On Windows (Command Prompt)
+     run.bat --booking_id YOUR_BOOKING_ID
+
+     # On Linux/Mac
+     ./run.sh --booking_id YOUR_BOOKING_ID
+     ```
+
+2. **Manual Execution**:
+
+   - Run with default booking ID:
+
+     ```
+     python main.py
+     ```
+
+   - Run with custom booking ID:
+     ```
+     python main.py --booking_id YOUR_BOOKING_ID
+     ```
+
+3. The program will:
+   - Connect to seacargotracking.net
+   - Use stored interaction patterns or AI to find the input field
+   - Submit the booking ID and extract the voyage number and arrival date
+   - Store the interaction patterns for future use
+   - Save the results to search_history.json
 
 ## Technical Implementation
 
@@ -51,8 +143,8 @@ If no booking ID is provided, it will use the default "MSCU5285725".
 
 ## Requirements
 
-- Python 3.6+
-- Selenium
-- BeautifulSoup4
-- Google Gemini API Key (stored in .env file)
-- Chrome WebDriver
+- Python 3.8 or higher
+- Chrome browser installed
+- Google Gemini API Key
+
+See `requirements.txt` for detailed Python dependencies.

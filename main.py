@@ -68,7 +68,16 @@ driver = webdriver.Chrome(
     service=Service(ChromeDriverManager().install()), options=chrome_options
 )
 
-container_number = "MSCU5285725"
+# Set up argument parser to accept booking ID as command line argument
+parser = argparse.ArgumentParser(
+    description="Retrieve voyage information from seacargotracking.net"
+)
+parser.add_argument(
+    "--booking_id", type=str, default="MSCU5285725", help="The booking ID to search for"
+)
+args = parser.parse_args()
+
+container_number = args.booking_id
 
 try:
     print(f"Searching for booking ID: {container_number}")
