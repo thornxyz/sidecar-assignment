@@ -28,8 +28,8 @@ This project implements an AI-powered solution to automate interactions with sea
 1. Clone the repository:
 
    ```
-   git clone <repository-url>
-   cd sidecar-assignment/test1
+   git clone https://github.com/thornxyz/sidecar-assignment.git
+   cd sidecar-assignment
    ```
 
 2. **Automatic Setup (Recommended)**:
