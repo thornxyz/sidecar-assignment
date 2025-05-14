@@ -1,1 +1,4 @@
 .env
+interaction_patterns.json
+search_history.json
+venv
