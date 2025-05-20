@@ -62,6 +62,8 @@ The application follows a modular architecture designed to handle web form ident
 
 ### Automatic Setup (Recommended)
 
+#### Windows
+
 1. Clone the repository:
 
    ```
@@ -82,6 +84,24 @@ The application follows a modular architecture designed to handle web form ident
    - Install all required dependencies
    - Create a `.env` file (prompting for your Gemini API key)
    - Run the application
+
+#### Linux/macOS
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/thornxyz/sidecar-assignment.git
+   cd sidecar-assignment
+   ```
+
+2. Make the bash script executable and run it:
+
+   ```
+   chmod +x run.sh
+   ./run.sh
+   ```
+
+   This script performs the same setup steps as the PowerShell version.
 
 ### Manual Setup
 
@@ -115,3 +135,10 @@ The application follows a modular architecture designed to handle web form ident
    ```
    python main.py
    ```
+
+## Usage
+
+The default tracking URL is set to HMM's cargo tracking page. To track shipments from different carriers:
+
+1. Modify the `url` variable in `main.py` to point to the desired tracking website.
+2. Modify the `bl_number` variable in `main.py` to use own id.
