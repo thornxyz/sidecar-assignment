@@ -1,4 +1,6 @@
 .env
-interaction_patterns.json
-search_history.json
 venv
+.pytest_cache
+downloaded_files
+__pycache__
+interaction_cache

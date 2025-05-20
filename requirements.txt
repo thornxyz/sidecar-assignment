@@ -1,5 +1,4 @@
-selenium
-webdriver-manager
+seleniumbase
 google-genai
 python-dotenv
 beautifulsoup4
