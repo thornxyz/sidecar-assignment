@@ -17,19 +17,16 @@ if not gemini_api_key:
 
 gemini_client = genai.Client(api_key=gemini_api_key)
 
-# Create cache directory if it doesn't exist
 CACHE_DIR = Path("interaction_cache")
 CACHE_DIR.mkdir(exist_ok=True)
 
 
 def get_cache_key(url, value):
-    """Generate a unique cache key based on URL and input value."""
     key_string = f"{url}:{value}"
     return hashlib.md5(key_string.encode()).hexdigest()
 
 
 def save_to_cache(url, value, interaction_data):
-    """Save interaction data to cache file."""
     cache_key = get_cache_key(url, value)
     cache_file = CACHE_DIR / f"{cache_key}.json"
 
@@ -49,7 +46,6 @@ def save_to_cache(url, value, interaction_data):
 
 
 def get_from_cache(url, value):
-    """Retrieve interaction data from cache if available."""
     cache_key = get_cache_key(url, value)
     cache_file = CACHE_DIR / f"{cache_key}.json"
 
@@ -72,7 +68,6 @@ def get_from_cache(url, value):
 
 
 def update_cache_success(url, value, success=True):
-    """Update success/failure statistics for cached interaction."""
     cache_key = get_cache_key(url, value)
     cache_file = CACHE_DIR / f"{cache_key}.json"
 
@@ -93,7 +88,6 @@ def update_cache_success(url, value, success=True):
 
 
 def identify_input_field(page_html):
-    """Identify input field in the tracking page."""
     soup = BeautifulSoup(page_html, "html.parser")
 
     for tag in soup(["script", "style", "noscript", "meta", "link", "iframe"]):
@@ -238,7 +232,6 @@ def clean_and_analyze(page_html):
 
 
 def analyze_and_repair_actions(page_html, current_actions):
-    """Analyze page and repair actions if selectors have changed."""
     try:
         new_selector_info = identify_input_field(page_html)
 
@@ -294,7 +287,6 @@ def analyze_and_repair_actions(page_html, current_actions):
 
 
 def execute_form_interaction(sb, selector_info, value, url=None):
-    """Execute form interaction with caching support."""
     cached_actions = None
     if url:
         cached_actions = get_from_cache(url, value)

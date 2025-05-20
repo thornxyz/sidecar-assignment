@@ -1,150 +1,117 @@
 # AI-Powered Web Automation Solution
 
-This project implements an AI-powered solution to automate interactions with seacargotracking.net for retrieving voyage numbers and arrival dates associated with booking IDs.
+## Overview
 
-## Key Features
+This project implements an AI-powered solution to automate interactions with cargo tracking websites for retrieving voyage numbers and arrival dates associated with booking IDs.
 
-### 1. Initial Retrieval without Hardcoding
+The currently scrapes from the HMM cargo tracking page at https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do
 
-- The solution uses the Gemini AI model to interpret web page structure and find appropriate input fields
-- No hardcoded XPaths or element selectors are used
-- AI determines the correct fields to interact with based on natural language descriptions
+But it's built to be general-purpose and adaptable to work with most cargo tracking websites.
 
-### 2. Process Persistence and Storage
+## Architecture
 
-- The solution stores interaction patterns in `interaction_patterns.json`
-- Each interaction (like finding input fields, identifying result elements) is saved for future use
-- For repeat visits, the system tries the stored patterns first before falling back to AI-based detection
-- Results are stored in `search_history.json` for future reference
+The application follows a modular architecture designed to handle web form identification, interaction, and data extraction with built-in intelligence:
 
-### 3. Adaptability and Generalization
+1. **Page Analysis**: Cleans HTML and identifies interactive form elements
+2. **AI Integration**: Interprets page structure and generates interaction steps
+3. **Interaction Engine**: Executes browser automation commands
+4. **Caching System**: Stores successful interaction patterns for reuse
+5. **Self-Healing Logic**: Detects and repairs broken interaction patterns
 
-- Works with any booking ID via command-line parameter
-- Adapts to website changes by falling back to AI detection when stored patterns fail
-- Updates stored patterns based on successful interactions, creating a self-improving system
+## Technologies Used
 
-## Installation
+- **SeleniumBase**: Browser automation with undetectable features
+- **BeautifulSoup4**: HTML parsing, element identification, and noise removal
+- **Google Gemini AI** (google-genai): AI-powered form detection and data extraction
+- **hashlib**: Hash generation for unique cache keys
+- **python-dotenv**: Environment variable management for API keys
+
+## Features
+
+### 🔍 Automatic Form Detection
+
+- Automatically identifies tracking number input fields on shipping websites
+- Uses BeautifulSoup and Google's Gemini AI to analyze page structure
+- Adapts to different form submission methods (enter key, button click, form submit)
+
+### 🧠 Intelligent Interaction Caching
+
+- Stores successful interactions in a structured cache for future reuse
+- Generates unique hash keys based on URL and tracking number
+- Significantly improves response time for repeated tracking queries
+
+### 🛠️ Self-Healing Interactions
+
+- Detects when page selectors have changed since last interaction
+- Automatically repairs and updates interaction patterns
+- Maintains success/failure statistics to improve reliability over time
+
+### 📊 Data Extraction and Analysis
+
+- Cleans and processes tracking results using BeautifulSoup
+- Extracts key shipping information (voyage number, ETA, status)
+- Presents results in a clean, structured format
+
+## Requirements
+
+- Python 3.8+
+- Google Gemini API key
+- Dependencies as listed in `requirements.txt`
+
+## Setup and Run
+
+### Automatic Setup (Recommended)
 
 1. Clone the repository:
 
    ```
-   git clone <repository-url>
-   cd sidecar-assignment/test1
+   git clone https://github.com/thornxyz/sidecar-assignment.git
+   cd sidecar-assignment
    ```
 
-2. **Automatic Setup (Recommended)**:
+2. Run the setup script:
 
-   - On Windows (PowerShell):
+   ```
+   .\run.ps1
+   ```
 
-     ```
-     .\run.ps1
-     ```
+   This script will:
 
-   - On Windows (Command Prompt):
+   - Check for Python installation
+   - Create and activate a virtual environment
+   - Install all required dependencies
+   - Create a `.env` file (prompting for your Gemini API key)
+   - Run the application
 
-     ```
-     run.bat
-     ```
+### Manual Setup
 
-   - On Linux/Mac:
-     ```
-     chmod +x run.sh
-     ./run.sh
-     ```
+1. Clone the repository:
 
-3. **Manual Setup**:
+   ```
+   git clone https://github.com/thornxyz/sidecar-assignment.git
+   cd sidecar-assignment
+   ```
 
-   Create a virtual environment:
+2. Create and activate a virtual environment:
 
    ```
    python -m venv venv
    .\venv\Scripts\activate
    ```
 
-   Install dependencies:
+3. Install the required dependencies:
 
    ```
    pip install -r requirements.txt
    ```
 
-   Create a `.env` file in the root directory with your Gemini API key:
+4. Create a `.env` file in the project root with your Gemini API key:
 
    ```
-   GEMINI_API_KEY=your_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
-## How to Run
-
-1. **Using the Run Scripts** (Recommended):
-
-   - Run with default booking ID:
-
-     ```
-     # On Windows (PowerShell)
-     .\run.ps1
-
-     # On Windows (Command Prompt)
-     run.bat
-
-     # On Linux/Mac
-     ./run.sh
-     ```
-
-   - Run with custom booking ID:
-
-     ```
-     # On Windows (PowerShell)
-     .\run.ps1 --booking_id YOUR_BOOKING_ID
-
-     # On Windows (Command Prompt)
-     run.bat --booking_id YOUR_BOOKING_ID
-
-     # On Linux/Mac
-     ./run.sh --booking_id YOUR_BOOKING_ID
-     ```
-
-2. **Manual Execution**:
-
-   - Run with default booking ID:
-
-     ```
-     python main.py
-     ```
-
-   - Run with custom booking ID:
-     ```
-     python main.py --booking_id YOUR_BOOKING_ID
-     ```
-
-3. The program will:
-   - Connect to seacargotracking.net
-   - Use stored interaction patterns or AI to find the input field
-   - Submit the booking ID and extract the voyage number and arrival date
-   - Store the interaction patterns for future use
-   - Save the results to search_history.json
-
-## Technical Implementation
-
-1. **Interaction Pattern Storage**
-
-   - Stores XPaths, element identifiers, and other interaction data
-   - Timestamps patterns to track recency
-   - Creates a history of successful interactions
-
-2. **Fallback Mechanism**
-
-   - First attempts to use stored patterns
-   - Falls back to AI-based detection if stored patterns fail
-   - Updates patterns with successful interactions
-
-3. **Result Validation**
-   - Uses AI to extract structured data from unstructured webpage content
-   - Validates and stores the extracted data
-
-## Requirements
-
-- Python 3.8 or higher
-- Chrome browser installed
-- Google Gemini API Key
-
-See `requirements.txt` for detailed Python dependencies.
+5. Run the application:
+   ```
+   python main.py
+   ```
