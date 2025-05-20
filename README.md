@@ -2,6 +2,8 @@
 
 ## Overview
 
+Check out the demo at : https://drive.google.com/file/d/1EmJveWscb_mP5kxIBSYyYHc91lfWAMRS/view?usp=sharing
+
 This project implements an AI-powered solution to automate interactions with cargo tracking websites for retrieving voyage numbers and arrival dates associated with booking IDs.
 
 The currently scrapes from the HMM cargo tracking page at https://www.hmm21.com/e-service/general/trackNTrace/TrackNTrace.do
@@ -54,7 +56,7 @@ The application follows a modular architecture designed to handle web form ident
 
 ## Setup and Run
 
-### Automatic Setup (Recommended)
+### Automatic Setup 
 
 #### Windows
 
