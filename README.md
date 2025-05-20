@@ -28,12 +28,6 @@ The application follows a modular architecture designed to handle web form ident
 
 ## Features
 
-### 🔍 Automatic Form Detection
-
-- Automatically identifies tracking number input fields on shipping websites
-- Uses BeautifulSoup and Google's Gemini AI to analyze page structure
-- Adapts to different form submission methods (enter key, button click, form submit)
-
 ### 🧠 Intelligent Interaction Caching
 
 - Stores successful interactions in a structured cache for future reuse
