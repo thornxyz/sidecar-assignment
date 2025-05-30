@@ -9,22 +9,19 @@
 
 ### Installation
 
-1. **Initialize UV project** (if not already done):
+```bash
+#install dependencies
+uv add -r requirements.txt
 
-   ```bash
-   uv init --python 3.12 .
-   ```
+#install playwright
+uv run playwright install
+```
 
-2. **Add required dependencies**:
+### Make env file
 
-   ```bash
-   uv add browser-use[memory] seleniumbase
-   ```
-
-3. **Install dependencies**:
-   ```bash
-   uv sync
-   ```
+```env
+GOOGLE_API_KEY=your google api key
+```
 
 ### Running the Project
 
