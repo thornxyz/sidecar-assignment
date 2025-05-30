@@ -2,17 +2,12 @@
 
 ## Setup Instructions
 
-### Prerequisites
-
 - Python 3.8 or higher
 - UV package manager
 
 ### Installation
 
 1. **Initialize UV project** (if not already done):
-
-   ```bash
-   uv init --python 3.12 .
    ```
 
 2. **Add required dependencies**:
