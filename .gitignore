@@ -13,5 +13,5 @@ wheels/
 downloaded_files
 latest_logs
 
-result.txt
+agent_result.txt
 selenium_actions.json
