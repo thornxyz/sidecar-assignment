@@ -17,7 +17,7 @@ uv add -r requirements.txt
 uv run playwright install
 ```
 
-### Make env file
+### Create a ```.env``` file in the project root
 
 ```env
 GOOGLE_API_KEY=your google api key
